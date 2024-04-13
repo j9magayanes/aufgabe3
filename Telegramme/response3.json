@@ -1,0 +1,111 @@
+[
+    {
+        "Name": "Header",
+        "Variables": [
+            {
+                "Name": "eventHeader.eventId",
+                "Type": "UInt32",
+                "Value": "12461928"
+            },
+            {
+                "Name": "eventHeader.eventName",
+                "Type": "String",
+                "Value": "partProcessed"
+            },
+            {
+                "Name": "eventHeader.eventSwitch",
+                "Type": "Int32",
+                "Value": "132"
+            },
+            {
+                "Name": "eventHeader.location.application",
+                "Type": "String",
+                "Value": "PLC"
+            },
+            {
+                "Name": "eventHeader.location.fuNo",
+                "Type": "String",
+                "Value": "1"
+            },
+            {
+                "Name": "eventHeader.location.lineNo",
+                "Type": "String",
+                "Value": "1201"
+            },
+            {
+                "Name": "eventHeader.location.locationId",
+                "Type": "String",
+                "Value": "00000000120101400001100310000"
+            },
+            {
+                "Name": "eventHeader.location.processName",
+                "Type": "String",
+                "Value": "Messen Ankerfreiweg"
+            },
+            {
+                "Name": "eventHeader.location.processNo",
+                "Type": "Int32",
+                "Value": "121401031"
+            },
+            {
+                "Name": "eventHeader.location.statIdx",
+                "Type": "String",
+                "Value": "1"
+            },
+            {
+                "Name": "eventHeader.location.statNo",
+                "Type": "String",
+                "Value": "140"
+            },
+            {
+                "Name": "eventHeader.location.toolPos",
+                "Type": "String",
+                "Value": "0"
+            },
+            {
+                "Name": "eventHeader.location.workPos",
+                "Type": "String",
+                "Value": "31"
+            },
+            {
+                "Name": "eventHeader.timeStamp",
+                "Type": "DateTime",
+                "Value": "09.04.2024 09:17:25"
+            }
+        ]
+    },
+    {
+        "Name": "Event",
+        "Variables": [
+            {
+                "Name": "partProcessed.identifier",
+                "Type": "String",
+                "Value": "0600_1201_0140_1234"
+            }
+        ]
+    },
+    {
+        "Name": "ResponseBody",
+        "Variables": [
+            {
+                "Name": "RESULT.RESULTSTATE",
+                "Type": "String",
+                "Value": "Success"
+            },
+            {
+                "Name": "RESULT.ERRORNUMBER",
+                "Type": "Int32",
+                "Value": "0"
+            },
+            {
+                "Name": "RESULT.DESCRIPTION",
+                "Type": "String",
+                "Value": ""
+            }
+        ]
+    },
+    {
+        "Name": "SymbolStore",
+        "Variables": []
+    }
+]
