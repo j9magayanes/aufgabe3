@@ -1,0 +1,283 @@
+,Code,qs-STAT Pflicht-eingabe-felder,"Schlüs-selfeld 
+im upload",Feldbezeichnung,Bemerkung,"Format-Vorgabe,
+Beispiele",Standard allgemein,Sonderkonfigurationen / Hinweise,Länge,Typ*,Eingabe,Bemerkung
+Werte / Zusatzdaten,K0001,,,Messwert,,,keine Vorgabe,,22,F,,
+,K0002,,,Attribut,gültiger / ungültiger Messwert,,keine Vorgabe,,5,I,,
+,K0004,,,Datum/Zeit,,,keine Vorgabe,,---,D,,
+,K0005,,,Ereignis,"wird verwendet für die Maßnahmenaufnhame
+Katalog siehe K2060",,aus Katalogauswahl,,---,S,,
+,K0006,X,,Chargennummer,siehe z.B. Chargenbegleitschein,12130,Chargennummer,,20,A,,
+,K0007,,,Nestnummer,Katalogbasiert,,keine Vorgabe,,10,I,,
+,K0008,,,Prüfername,Katalogbasiert,,aus Katalogauswahl,,10,I,,
+,K0009,,,Textfeld,freie Texteingabe,"Granulatwechsel
+DMC nach vorne",keine Vorgabe,aktiv in DB gesetzt,40,A,,
+,K0010,,,Maschine,Katalogbasiert,,ggf. Vorbearbeitsmaschine,,10,I,,
+,K0011,,,Prozessparameter,Katalog siehe K2061,,keine Vorgabe,,---,S,,
+,K0012,,,Prüfmittelnummer,"Integer der auf den Katalog verweist
+z.B. 005_ZEISS_01  hat die Prüfmittelnummer 7",,aus Katalogauswahl,,10,I,,
+,K0014,X,,Teileident,z.B. eingescannter DMC Code,1129xxxxxxx,z.B. DMC Code ,aktiv in DB gesetzt,40,A,,
+,K0016,,,Produktionsnummer,"Inhalt wird von K1005 in K0016 geschiftet.
+Damit wird die Ordnerstruktur für die CMM Ablage erstellt ",,,,30,A,,
+,K0017,,,Werkstückträgernummer,"Inhalt wird von K1082 in K0017 geschiftet.
+Damit wird die Ordnerstruktur für die CMM Ablage erstellt ",,,,30,A,,
+,K0053,,,Auftrag,siehe z.B. Chargenbegleitschein,,keine Vorgabe,,20,A,,
+Anzahl Merkmale,K0100,,,Anzahl Merkmale in Datei,,,,,5,I,,
+Teiledaten,K1001,X,X,Teilenummer,"Eingabe der SachNr. 
+Daten werden durch ""_"" getrennt, keine Leerzeichen",1_461_C46_005,"1_461_C46_005
+Pulldown Menue an Messmaschine",,30,A,Auswahlmaske,
+,K1002,X,X,Teilebezeichnung,"Teilebezeichnung
+Name ausgeschrieben",Rollenschuh,"Teilespezifisch eindeutig und durchgängig.
+Katalogauswahl an Messmaschine",,80,A,Fest,Editierung muss möglich sein
+,K1003,,,Teilekurzbezeichnung,Feld wird als Sortierfeld der VE Montage und VE Teilefertigung verwendet,VE Montage,,,,,,
+,K1004,X,X,Änderungsstand d. Teils,"Änderungsverfolgung von Zeichnungsänderungen, Details können in K1900 eingetragen werden
+Format: TT.MM.JJJJ
+Zeiss: NN_JJJJMMTT","07.03.2011
+
+Zeiss: 04_20100215","Zeiss: NN_JJJJMMTT
+Mahr: TT.MM.JJ
+Hommel: TT.MM.JJJJ
+FMS1000: TT.MM.JJJJ
+Zygolot: …",Sonderregelung Nockenwelle für Hommel W55: wird als Feld für DMC-Code verwendet,20,A,Fest,Editierung muss möglich sein
+,K1005,X,,Erzeugnis,"Benennung des Erzeugnisses
+Inhalt wird in K0016 geschiftet.",CP4,CP4,,40,A,Fest,Editierung muss möglich sein
+,K1017,,,Prüfplan Freigabe,"Prüfplan freigeben (0), sperren (nicht 0)
+Nur in freigegebene Prüfplänen können Werte eingegeben werden. 
+Bei Neuerstellung eines Prüfplans ist ggf. der vorhandene alte Prüfplan zu sperren",,,,,I,,
+,K1081,X,X,Maschinen - Nummer,"Nummer der Maschine / Einrichtung / Nestnummer / Station
+Zahlen sind zweistellig
+entweder doppelte Nennung der Maschinennummer oder, falls vorhanden, Unterscheidung der Einheiten in der Maschine
+Trennung der Informationen durch ""_"", 
+ggf. Nennung der Inv.-Nr.","EH_01, …","EH_xx 
+(pulldown-menü an Messmaschine)",,20,A,Auswahlmaske,
+,K1082,X,X,Maschinen - Bezeichnung,"Bezeichnung der Maschine / Einrichtung
+Maschinenname mit laufender zweistelliger Nummer, Maschinenbezeichnung und Nummer durch ""_"" getrennt
+Inhalt wird in K0017 geschiftet,",Bahmueller_01,"vollständiger Namen des Maschinenherstellers_2-stellige Maschinennummer
+(pulldown-menü an Messmaschine) 
+(Achtung: Ü -> UE)",,40,A,Auswahlmaske,
+,K1100,X,,Bereich,,,FeP/MSC,,40,A,Fest,
+,K1101,X,,Gruppe/Abteilung,,,FeP/MSC4,,40,A,Fest,
+,K1102,X,,Werkstatt/Bereich,,W011270,jeweilige Werkstatt,,40,A,Fest,
+,K1203,X,X,Prüfgrund,"z.B. Serie, Sondermessung, Abnahme
+weitere Prüfgründe in Absprache mit FeP/QMM11 Schneider, Funk","Serie
+2h-Messung
+Abnahme
+Sondermessung
+Kalibriermessung","Serie
+2h-Messung
+Abnahme
+Sondermessung
+Kalibriermessung",,,,Auswahlmaske,
+,K1206,X,X,Prüfplatz,"Prüfplätze werdend durch FeP/QMM11 Schneider, Funk vergeben
+Die Unterscheidung der einzelnen Messplätze erfolgt über das K-Feld K0012","001_RS-STOTZ
+002_NW-STOTZ
+003_PK-MIKROSA
+004_RS-NANOSCAN
+005_ZEISS
+006_FMS1000",Vorgabe durch QMM,,40,A,Fest,Editierung muss möglich sein
+,K1207,,,Abt./Name,,,,,40,A,,
+,K1900,,,Kommentar,"Freitexteingabe
+kann z.B. nähere Informationen für Änderungen im K1004 enthalten",,,,255,A,,
+Merkmalsdaten,K2001,X,X,Merkmal-Nr,"bei Zeiss-Messmaschinen nicht als Schlüsselfeld definiert
+Nach Möglichkeit die Merkmalsnummern aus der Tabelle der Prüfmerkmale (siehe TEF-Zeichnung) verwenden",1,siehe Zeichnung,,20,A,Fest,Editierung muss möglich sein
+,K2002,X,X,Merkmal-Bez.,Teilespezifisch eindeutig und durchgängig,"Rz,
+Außen-DMR",Teilespezifisch eindeutig und durchgängig.,,80,A,Fest,Editierung muss möglich sein
+,K2004,,,Merkmalsart,"variabel, attributiv, …",,-,,1,I,,
+,K2005,X,,Merkmalsklasse,"Wird verwendet zur Unterscheidung von Führungs- und Verfolgungsmerkmalen und Hilfsmaßen
+
+Definierte Feldinhalte
+4 -> SPC, Führungsmerkmal
+3 -> signifikant
+2 -> wichtig, Verfolgungsmerkmal
+1 -> weniger wichtig
+0 -> unwichtig, Hilfsmaß","4
+3
+2
+1
+0","Definierte Feldinhalte
+4 -> SPC , Führungsmerkmale
+3 -> signifikant
+2 -> wichtig, Verfolgungsmerkmal
+1 -> weniger wichtig
+0 -> unwichtig, Hilfsmaß
+------------------------
+durchgängig für alle Messmaschinen, außer Mahr","Umbenennung in
+Textdatenbank qdastext.mdb",5,I5,Fest,Editierung muss möglich sein
+,K2006,,,"Regelungsart
+Umbenannt: SF",wird bei Bedarf bei einer genehmigten Sonderfreigabe durch den Planer markiert,,wird bei Bedarf bei einer genehmigten Sonderfreigabe durch den Planer markiert,"Umbenennung in
+Textdatenbank qdastext.mdb",1,I,,
+,K2009,,,Messgröße,,,,,3,I,,
+,K2016,,,100% Messung,Kennzeichnung sofern es sich um ein Merkmal mit einer 100% Prüfung handelt,,,ersetzt K2007 aus ME7,,,,
+,K2022,X,,Nachkommast.,,,Eintrag nach Bedarf,,1,I,,
+,K2041,,,Erfassungsart,Name der RS232 Schnittstelle,,,,2,I,,
+,K2060,,,Ereigniskatalog,,,,,5,I,,
+,K2101,,,Nennmaß,"Kann eingetragen werden, wenn innerhalb der Toleranz",,Eintrag nach Bedarf,,22,F,,
+,K2110,X,,Unt. Spez.Gr.,,,Eintrag nach Bedarf,,22,F,,
+,K2111,X,,Ob. Spez.Gr.,,,Eintrag nach Bedarf,,22,F,,
+,K2112,X,,unteres Abmaß,,,Eintrag nach Bedarf,,22,F,,
+,K2113,X,,oberes Abmaß,,,Eintrag nach Bedarf,,22,F,,
+,K2120,X,,Unt.nat.Grenze,,,Eintrag nach Bedarf,,1,I,,
+,K2121,X,,Ob.nat.Grenze,,,Eintrag nach Bedarf,,1,I,,
+,K2142,X,,Einheit,,,Eintrag nach Bedarf,,20,A,,
+,K2152,,,Toleranz,,,,,22,F,,
+,K2202,,,Aw.Typ,Verfahren 1 - 5,,,,1,I,,
+,K2211,X,,Nummer,Einstellnormal,"01, 02, 03, …",zweistellig,,40,A,Fest,Editierung muss möglich sein
+,K2212,X,,Bezeichnung,Einstellnormal,LY4711P1,Prüfmittel-Bez.,,40,A,Fest,Editierung muss möglich sein
+,K2213,X,,Istwert,Einstellnormal,1.569,Wert aus Kalibrierschein,,22,F,Fest,Editierung muss möglich sein
+,K2222,,,Anz. Ref. Mess.,,,,,5,I,,
+,K2243,,,Zeichnung,,,,,80,A,,
+,K2303,,,Abt./Name,,,,,40,A,,
+,K2311,,,Arbeitsgang-Nr,,,,,20,A,,
+,K2312,,,Arbeitsgang-Bez,,,,,40,A,,
+,K2401,X,,Prüfmittel-Nr,Messmittelnummer,,04,,40,A,Fest,Editierung muss möglich sein
+,K2402,X,,Prüfmittel-Bez.,mögliche Wiederholung in der Merkmalsmaske,,JMR2P11,,80,A,Fest,Editierung muss möglich sein
+,K2404,,,Auflösung,,,,,22,F,,
+,K2406,,,Prüfmit.Herst.,,,,,40,A,,
+,K2410,,,Prüfort,,,,,40,A,,
+,K2411,,,Datum,Datum,,,,40,D,,
+,K2501,,,Bemaßungsattribut,,,,,1,I,,
+,K2630,X,,Kal.-unsicherh.,Einstellnormal,0.002,Wert aus Kalibrierschein,,,,Fest,Editierung muss möglich sein
+,K2802,,,Zusatztest,,,,,,,,
+,K2900,,,Bemerkung,,,,,255,A,,
+,K8500,X,,Stpr. Umfang,,3,Messmaschinenbezogen,,,,Fest,Editierung muss möglich sein
+,K8501,X,,Stichprobe,"0: fest
+1: gleitend",0,Messmaschinenbezogen,,1,I,Fest,Editierung muss möglich sein
+,K8502,,,Stpr. Frequenz,"Text
+aus Maske entfernen?",,,"wurde aus Merkmalsmaske
+entfernt",40,A,,
+,K8504,,,Stichprobenfhäufigkeit,,,,,,,,
+Katalogfelder,,"Zusatzdaten in der Wertemaske können über Katalogeinträge verwaltet werden. Alle Einträge in den Katalogen werden zentral bei FeP/QMM11 Funk, Schneider verwaltet.",,,,,,,,,,
+,K4030/0, ,,Auftragskatalog,"Bezeichnung des Haupt- / Subkatalogs
+K4030/1 Bezeichnung des 1. Subkatalogs",RS_STOTZ,,,80,A,,
+,K4031,,,Zuordnung der Elemente des Hautkatalogs zum jeweiligen Subkatalog,Beschreibt welches der Elemente des Hauptkatalogs im Subkatalog verwendet werden.,1,,,5,I,,
+,K4032,,,Auftrag-Nummer,,1,,,20,A,,
+,K4033,,,Auftrag-Bezeichnung,"wird verwendet für Prüfgrund 
+Serie, Kalibriermessung, Sondermessung am RS_Stotz
+Inhalt wird durch FeP/QMM11 verwaltet",Serie,,,80,A,,
+,K4060,,,Maschinenkatalog,Bezeichnung des Haupt- / Subkatalogs,RS_STOTZ,,,80,A,,
+,K4061,,,Zuordnung der Elemente des Hautkatalogs zum jeweiligen Subkatalog,Beschreibt welches der Elemente des Hauptkatalogs im Subkatalog verwendet werden.,1,,,5,I,,
+,K4062,,,Maschinen-Nummer,,1,,,20,A,,
+,K4063,,,Maschinen-Bezeichnung,"wird für die Zuordnung der Prüfpläne zu den Prüfplätzen verwendet,
+hier: Junker_01 ist die erste Maschine im Katalog (K4063/1)
+Inhalt wird durch FeP/QMM11 verwaltet",Junker_01,,,80,A,,
+,K4070,,,Prüfmittelkatalog,Bezeichnung des Haupt- / Subkatalogs,,,,80,A,,
+,K4703,,,Prüfmittel-Bezeichnung,"wird zur Unterscheidung der individuellen Prüfmittel verwendet
+Inhalt wird durch FeP/QMM11 verwaltet",004_RS-Nanoscan_01,,,80,A,,
+,K4090,,,Prüferkatalog,Bezeichnung des Haupt- / Subkatalogs,RS_STOTZ,,,80,A,,
+,K4091,,,Zuordnung der Elemente des Hautkatalogs zum jeweiligen Subkatalog,Beschreibt welches der Elemente des Hauptkatalogs im Subkatalog verwendet werden.,1,,,5,I,,
+,K4092,,,Prüfer-Nummer,"User-ID, falls vorhanden",xyz_1fe,,,20,A,,
+,K4093,,,Prüfer-Name,Prüfername,"Mustermann, Max",,,80,A,,
+,K4094,,,Prüfer-Abteilung,Werkstatt,W011xxx,,,50,A,,
+,K4110,,,Erzeugniskatalog,Bezeichnung des Haupt- / Subkatalogs,,,,80,A,,
+,K4112,,,Erzeugnis-Nummer,Prüfplatz-Nummer,1,,,20,A,,
+,K4113,,,Erzeugnis-Name,Prüfplatz Bezeichnung,001_RS-STOTZ,,,80,A,,
+,K4220,,,Ereigniskatalog,"Bezeichnung des Haupt- / Subkatalogs
+wird im FeP als Maßnahmenkatalog verwendet",RS_STOTZ,,,80,A,,
+,K4221,,,Zuordnung der Elemente des Hautkatalogs zum jeweiligen Subkatalog,Beschreibt welches der Elemente des Hauptkatalogs im Subkatalog verwendet werden.,1,,,5,I,,
+,K4222,,,Ereignis-Nummer,,M11,,,20,A,,
+,K4223,,,Ereignistext,,"100% verlesen, i.O. Anteil abgeliefert",,,80,A,,
+,K4250,,,Nestkatalog,Bezeichnung des Haupt- / Subkatalogs,Beschichtungstisch_MSW_01,,,80,A,,
+,K4251,,,Zuordnung der Elemente des Hautkatalogs zum jeweiligen Subkatalog,Beschreibt welches der Elemente des Hauptkatalogs im Subkatalog verwendet werden.,11,,,5,I,,
+,K4253,,,Nestbezeichnung,Verwaltung der einezelnen Nestnummern in der Beschichtung,G055,,,80,A,,
+,K2001,,,Characteristic number,,,,,20,A,,
+,K2002,,,"Title of the characteristic
+Q-DAS: “Characteristic name”",,,,,80,A,,
+,K2003,,,"Value
+Q-DAS: “Characteristic name”",,,,,20,A,,
+,K2004,,,Characteristic type (→Variable characteristic or →Attributive characteristic),,,,,5,I,,
+,K2005,,,"“Characteristic class” (Q-DAS), values 1 to 4, according to the characteristic categories in infra CONVERT as follows:
+1 - Not important: Auxiliary Dimension; Rough Dimension; Theoretical Dimension
+2 - Important: Common Characteristic
+3 - Significant: Control dimension
+4 - Critical: Special Characeteristic",,,,,1,A,,
+,K2009,,,→Characteristic class*​*,,,,,3,I,,
+,K2022,,,"Number of decimal places of the numerical value of the nominal dimension; if nominal dimension is not set, maximum number of decimal places of the numerical values of upper or lower tolerance.
+Q-DAS: “Decimal Places”
+
+See User manual > Settings > Settings > Characteristic > “Number format” group",,,,,5,I,,
+,K2091,,,"Unique reference number within the quality test plan
+Q-DAS: “Characteristic index”",,,,,20,A,,
+,K2101,,,Nominal value,,,,,22,F,,
+,K2110,,,"Upper limit value = nominal value + upper tolerance value
+Q-DAS: “Lower specification limit”",,,,,22,F,,
+,K2111,,,"Lower limit value = ⇒ nominal value - lower tolerance value
+Q-DAS: “Upper specification limit”",,,,,22,F,,
+,K2112,,,Lower tolerance value,,,,,22,F,,
+,K2113,,,Upper tolerance value,,,,,22,F,,
+,K2120,,,Type of the lower value (0 = no limit; 1 = limit value; 2 = natural limit),,,,,1,I,,
+,K2121,,,Type of the upper value (0 = no limit; 1 = limit value; 2 = natural limit),,,,,1,I,,
+,K2243,,,File name of the drawing on which the characteristic is located,,,,,80,A,,
+,K2507,,,Field letter Drawing,,,,,2,A,,
+,K2508,,,Field number Zeichnung,,,,,3,I,,
+,K2800,,,"Name for field K2802, static: “Stamp ID”
+Q-DAS: “User field name 1”",,,,,50,A,,
+,K2801,,,"Data type of field K2802, static: “A”
+Q-DAS: “User field type 1”",,,,,1,A,,
+,K2802,,,"Stamp ID in the form of a GUID
+Q-DAS: “User field content 1”",,,,,255,A,,
+,K2810,,,"Name for field K2812, static: “Drawing path”
+Q-DAS: “User field name 2”",,,,,50,A,,
+,K2811,,,"Data type of field K2812, static: “A”
+Q-DAS: “User field type 2”",,,,,1,A,,
+,K2812,,,"Stamp graphic name (image file of the drawing section with the stamped characteristic)
+Q-DAS: “User field content 2”",,,,,255,A,,
+,K2820,,,"Name for field K2822, static: “Characteristic ID”
+Q-DAS: “user field description 3”",,,,,50,A,,
+,K2821,,,"Data type of field K2822, static: “A”
+Q-DAS: “user field type 3”",,,,,1,A,,
+,K2822,,,"Characteristic ID in the form of a GUID
+Q-DAS: “user field contents 3”",,,,,255,A,,
+,K2830,,,"Name for field K2832, static: “ICP-ID”
+Q-DAS: “user field description 4”",,,,,50,A,,
+,K2831,,,"Date type of field K2832, static: “A”
+Q-DAS: “user field type 4”",,,,,1,A,,
+,K2832,,,"ID of the characteristic, if it comes from an imported infra - CONVERT project file
+Q-DAS: “user field contents 4”",,,,,255,A,,
+,K2840,,,"Name for field K2841, static: “Count”
+Q-DAS: “user field description 5”",,,,,50,A,,
+,K2841,,,"Date type of field K2841, static: “A”
+Q-DAS: “user field type 5”",,,,,1,A,,
+,K2842,,,"Number of repetitions of the characteristic
+Q-DAS: “user field contents5”",,,,,255,A,,
+,K2850,,,"Name for field K2852, static: “stamp -position, -target, -radius”
+Q-DAS: “user field 6”",,,,,50,A,,
+,K2851,,,"Date type of field K2852, static: “A”
+Q-DAS: “user field type 6”",,,,,1,A,,
+,K2852,,,"X coordinate of the stamp, Y coordinate of the stamp, X coordinate of the reference point (target point, origin point) of the stamp, Y coordinate of the reference point of the stamp and size of the stamp in pixels on the drawing graphic.
+Q-DAS: “Benutzer Feldinhalt 6”",,,,,255,A,,
+,K2860,,,"Name for field K2862, static: “Modifiers”
+Q-DAS: “user field 7”
+
+Note K8260 to K2862 available as of program version 3.3.0",,,,,50,A,,
+,K2861,,,"Data type of field K2862, static: “A”.
+Q-DAS: “user field 7”",,,,,1,A,,
+,K2862,,,Modifiers,,,,,255,A,,
+,K2870,,,"Name for field K2872, static: “Tag”
+Q-DAS: “user field 8”
+
+Note K8270 to K2872 available as of program version 3.3.0",,,,,50,A,,
+,K2871,,,"Data type of field K2872, static: “A “
+Q-DAS: “user field 8”",,,,,1,A,,
+,K2872,,,Tags separated by comma,,,,,255,A,,
+,K2900,,,Comment,,,,,255,A,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,Integer,,,,,,,
+,,,,,Fließkommazahl,,,,,,,
+,,,,,Datum / Zeitformat,,,,,,,
+,,,,,Alphanumerisch,,,,,,,
+,,,,,besondere Codierung,,,,,,,
+,,,,,,,,,,,,
+,,,,,Pflichtfelder,,,,,,,
