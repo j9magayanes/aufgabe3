@@ -1,5 +1,3 @@
-
-
 def remove_prefix(name):
     if name.startswith("eventHeader."):
         return name[len("eventHeader."):]
@@ -9,8 +7,7 @@ def remove_prefix(name):
         return name[len("item.Result."):]
     elif name.startswith("resHead."):
         return name[len("resHead."):]
-    else:
-        return name
+    return name
 
 def process_data(data):
     modified_data = []
