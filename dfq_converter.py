@@ -59,18 +59,17 @@ with open(jsonRequestPath) as f:
 
 # with open(convertedDfqName, 'w') as dfq:
 
-bodyIndex = -1
+def getBody(jsonString):
+    for item in jsonString:
+        if item.get("Name") == "Body":
+            return item
+    return None
 
-for index, item in enumerate(source):
-    if item.get("Name") == "Body":
-        bodyIndex = index
-        break
+body = getBody(source)
+if not body:
+    exit(1)
 
-if bodyIndex == -1:
-    exit(-1)
-
-
-for var in source[bodyIndex]['Variables']:
+for var in body.get('Variables'):
     processJsonValue(var)
 
 # processJsonValue(json.loads('{"Name": "resHead.batch", "Type": "String", "Value": ""}'))
