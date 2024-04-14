@@ -6,6 +6,12 @@ convertedDfqName = 'test.dfq'
 valueToKCode = {
     'batch': 'K0006',
     'RTNest': 'K0007',
+    'PartId': 'K1001',
+    'machineId': 'K1081',
+    'SpecPartNo': 'K2110',
+    'locationId': 'K2410',
+    'OrderNoCur': 'K4032',
+    'eventId': 'K4222',
 }
 
 dfqDict = dict({
