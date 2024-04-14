@@ -2,6 +2,7 @@ import json
 
 jsonRequestPath = 'Telegramme/request1.json'
 convertedDfqName = 'test.dfq'
+outputFile = 'testfile.dfq'
 
 valueToKCode = {
     'batch': 'K0006',
@@ -45,9 +46,11 @@ def processJsonValue(source, partNumber = '/1'):
     dfqDict[kcode + partNumber] = value
 
 
-def writeDfqFromDict(sourceDict: dict):
-    for key, value in sorted(sourceDict.items(), key=lambda x: 'L' + x[0] if 'K000' in x[0] else x[0]):
-        print(key, value)
+def writeDfqFromDict(sourceDict: dict, filename):
+    with open(filename, 'w') as f:
+        for key, value in sorted(sourceDict.items(), key=lambda x: 'L' + x[0] if 'K000' in x[0] else x[0]):
+            f.write(str(key) +' ' + str(value) + '\n')
+            print(key, value)
 
 
 with open(jsonRequestPath) as f:
@@ -72,6 +75,5 @@ for var in source[bodyIndex]['Variables']:
 # processJsonValue(json.loads('{"Name": "resHead.batch", "Type": "String", "Value": ""}'))
 
 print('\n\n\nResult is\n')
-print(dfqDict)
-writeDfqFromDict(dfqDict)
+writeDfqFromDict(dfqDict, outputFile)
 # print(source[bodyIndex])
