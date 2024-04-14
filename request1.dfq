@@ -1,12 +1,4 @@
-def extract_types(json_data):
-    types = []
-    for item in json_data:
-        if item["Name"] == "Body":
-            for variable in item["Variables"]:
-                types.append(variable["Type"])
-    return types
-
-json_data = [
+[
     {
       "Name": "Header",
       "Variables": [
@@ -395,5 +387,3 @@ json_data = [
       "Variables": []
     }
   ]
-types = extract_types(json_data)
-print(types)

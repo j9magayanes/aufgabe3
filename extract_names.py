@@ -6,7 +6,6 @@ def extract_names(json_data):
                 names.append(variable["Name"])
     return names
 
-# Example usage:
 json_data = [
     {
       "Name": "Header",

@@ -3,20 +3,17 @@ import json
 def convert_json_to_dict(json_data):
     result_dict = {}
 
-    # Iterate through each object in the JSON array
     for obj in json_data:
-        code = obj.get("Code", "")  # Get the value of "Code" field, remove extra spaces
+        code = obj.get("Code", "")
         if code is not None:
-            code = code.strip()  # Remove extra spaces if "Code" is not None
-        feldbezeichnung = obj.get("Feldbezeichnung", "")  # Get the value of "Feldbezeichnung" field
+            code = code.strip()
+        feldbezeichnung = obj.get("Feldbezeichnung", "")
 
-        # Add to result dictionary if "Code" is not empty and "Feldbezeichnung" is present
         if code and feldbezeichnung:
             result_dict[code] = feldbezeichnung
 
     return result_dict
 
-# Example usage:
 json_data = [
     {
         "Category": "Werte / Zusatzdaten",
