@@ -1,8 +1,10 @@
 import json
+from pathlib import Path
 
 jsonRequestPath = 'Telegramme/request1.json'
 convertedDfqName = 'test.dfq'
 outputFile = 'testfile.dfq'
+skipAll = False
 
 valueToKCode = {
     'batch': 'K0006',
@@ -20,28 +22,42 @@ dfqDict = dict({
     'K0101': 2,
 })
 
-def processJsonValue(source, destDict, partNumber = '/1'):
+
+def processJson(source, destDict, partNumber = '/1'):
+    global skipAll
     if source.get('Type') == 'Array' and source.get('ArrayItems'):
         for item in source.get('ArrayItems'):
-            processJsonValue(item)
+            processJson(item, destDict)
         return
     
     name = source.get('Name').split('.')[-1]
     value = source.get('Value')
 
     if not name:
-        print('! No name found:', source)
+        # print('! No name found:', source)
         return
     
     if value is None:
-        print('! No Value found:', source)
+        # print('! No Value found:', source)
         return
     
     kcode = valueToKCode.get(name)
 
     if not kcode:
-        print('! No K-code found:', source)
-        return
+        if skipAll:
+            return
+        
+        userChoise = input('Which K-code would you like to give to the "{}" JSON name?\nIts value is "{}"\nOptions are:\n1. [s]kip to skip\n2. [S]kip for skip all\n3. Type the K<xxxx> code and enter\nYour choise: '.format(name, value))
+        print('\n---------------------------------------------------\n')
+        if userChoise == 's':
+            return
+        
+        if userChoise == 'S':
+            skipAll = True
+            return
+        
+        kcode = userChoise
+        # print('! No K-code found:', source)
     
     destDict[kcode + partNumber] = value
 
@@ -65,38 +81,57 @@ def getBody(jsonString):
             return item
     return None
 
-body = getBody(source)
-if not body:
-    exit(1)
 
-for var in body.get('Variables'):
-    processJsonValue(var)
+def getInpulFilePath():
+    filePath = Path()
+    while not filePath.is_file():
+        filePath = Path(input('Telegramme file: '))
 
-# processJsonValue(json.loads('{"Name": "resHead.batch", "Type": "String", "Value": ""}'))
+    return filePath
 
 
-def writeNewFile(pathInput, filenameInput):
+def getOutputFilePath():
+    return Path(input('Output file: '))
+
+
+def extractJsonFromTelegramme(telegramme):
+    telegramme = telegramme[telegramme.find('['):]
+    telegramme = telegramme[:telegramme.find(';')]
+    return telegramme
+
+
+def main():
+    # inputFilePath = getInpulFilePath()
+    # outputFilePath = getOutputFilePath()
+    inputFilePath = 'Telegramme/0600_1201_0140_1234_240409_0001_091718.txt'
+    outputFilePath = 'e.dfq'
+
+
     # reads file
-    with open(pathInput) as f:
-        source = json.loads(f.read())
+    with open(inputFilePath) as f:
+        source = json.loads(extractJsonFromTelegramme(f.read()))
 
-    # gets the k number   
-    processJsonValue(source, dfqDict)
 
+    body = getBody(source)
+    if not body:
+        print('! No body is found')
+        return
+
+    # json to k-code dict
+    for var in body.get('Variables'):
+        processJson(var, dfqDict)
     
 
-    for var in source[bodyIndex]['Variables']:
-        processJsonValue(var)
-    
-
-    with open(filenameInput, 'w') as f:
-        for key, value in sorted(sourceDict.items(), key=lambda x: 'L' + x[0] if 'K000' in x[0] else x[0]):
+    with open(outputFilePath, 'w') as f:
+        for key, value in sorted(dfqDict.items(), key=lambda x: 'L' + x[0] if 'K000' in x[0] else x[0]):
             f.write(str(key) +' ' + str(value) + '\n')
-            print(key, value)
+            # print(key, value)
 
 
 
 
-print('\n\n\nResult is\n')
-writeDfqFromDict(dfqDict, outputFile)
-# print(source[bodyIndex])
+# print('\n\n\nResult is\n')
+# writeDfqFromDict(dfqDict, outputFile)
+# # print(source[bodyIndex])
+
+main()
