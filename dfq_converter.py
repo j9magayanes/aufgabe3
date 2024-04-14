@@ -20,7 +20,7 @@ dfqDict = dict({
     'K0101': 2,
 })
 
-def processJsonValue(source, partNumber = '/1'):
+def processJsonValue(source, destDict, partNumber = '/1'):
     if source.get('Type') == 'Array' and source.get('ArrayItems'):
         for item in source.get('ArrayItems'):
             processJsonValue(item)
@@ -43,10 +43,11 @@ def processJsonValue(source, partNumber = '/1'):
         print('! No K-code found:', source)
         return
     
-    dfqDict[kcode + partNumber] = value
+    destDict[kcode + partNumber] = value
 
 
 def writeDfqFromDict(sourceDict: dict, filename):
+
     with open(filename, 'w') as f:
         for key, value in sorted(sourceDict.items(), key=lambda x: 'L' + x[0] if 'K000' in x[0] else x[0]):
             f.write(str(key) +' ' + str(value) + '\n')
@@ -73,6 +74,29 @@ for var in source[bodyIndex]['Variables']:
     processJsonValue(var)
 
 # processJsonValue(json.loads('{"Name": "resHead.batch", "Type": "String", "Value": ""}'))
+
+
+def writeNewFile(pathInput, filenameInput):
+    # reads file
+    with open(pathInput) as f:
+        source = json.loads(f.read())
+
+    # gets the k number   
+    processJsonValue(source, dfqDict)
+
+    
+
+    for var in source[bodyIndex]['Variables']:
+        processJsonValue(var)
+    
+
+    with open(filenameInput, 'w') as f:
+        for key, value in sorted(sourceDict.items(), key=lambda x: 'L' + x[0] if 'K000' in x[0] else x[0]):
+            f.write(str(key) +' ' + str(value) + '\n')
+            print(key, value)
+
+
+
 
 print('\n\n\nResult is\n')
 writeDfqFromDict(dfqDict, outputFile)
