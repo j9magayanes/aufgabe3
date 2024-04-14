@@ -10,7 +10,7 @@ def convert_json_to_dict(json_data):
         feldbezeichnung = obj.get("Feldbezeichnung", "")
 
         if code and feldbezeichnung:
-            result_dict[code] = feldbezeichnung
+            result_dict[feldbezeichnung] = code
 
     return result_dict
 
