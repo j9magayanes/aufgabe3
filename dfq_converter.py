@@ -45,8 +45,8 @@ def processJsonValue(source, partNumber = '/1'):
     dfqDict[kcode + partNumber] = value
 
 
-def writeDfqFromDict(sourceDict):
-    for key, value in sourceDict.items():
+def writeDfqFromDict(sourceDict: dict):
+    for key, value in sorted(sourceDict.items(), key=lambda x: 'L' + x[0] if 'K000' in x[0] else x[0]):
         print(key, value)
 
 
